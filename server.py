@@ -11,6 +11,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.end_headers()
 
+
     def do_GET(self):
         self.set_headers()
 
@@ -43,6 +44,7 @@ def roll_to_text(user_id: int, dice: int, date: str) -> str:
     return to_return
 
 
-with socketserver.TCPServer(('', PORT), Handler) as httpd:
-    print('Server started')
-    httpd.serve_forever()
+if __name__ == "__main__":
+    with socketserver.TCPServer(('', PORT), Handler) as httpd:
+        print('Server started')
+        httpd.serve_forever()
